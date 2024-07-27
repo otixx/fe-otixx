@@ -22,8 +22,9 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { FormProvider, useForm } from "react-hook-form";
 import React from "react";
+import PageThankyou from "@/app/thankyou/page";
 
-const page = () => {
+const PageRegister = () => {
   const form = useForm();
 
   return (
@@ -81,7 +82,7 @@ const page = () => {
                     className="px-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   >
                     Saya setuju dengan{" "}
-                    <span className="text-first cursor-pointer">
+                    <span className="cursor-pointer text-first">
                       Syarat & Ketentuan{" "}
                     </span>
                     yang berlaku.
@@ -99,4 +100,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default PageThankyou;

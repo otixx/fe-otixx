@@ -10,16 +10,8 @@ import {
   UserRound,
 } from "lucide-react";
 
-import { Input } from "@/components/ui/input";
 import Image from "next/image";
-import { FormProvider, useForm } from "react-hook-form";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { useForm } from "react-hook-form";
 import TransactionForm from "@/components/TransactionForm";
 import { useTransactionForm } from "@/hook/useTransactionForm";
 
@@ -232,69 +224,6 @@ const TransactionPage = () => {
                   </span>
                   Pemesan 2
                 </h3>
-                <FormProvider {...form}>
-                  <FormField
-                    control={form.control}
-                    name="namaeo"
-                    render={({ field }) => (
-                      <FormItem>
-                        <div className="grid grid-cols-12">
-                          <div className="col-span-6">
-                            <FormLabel className="text-labelForm">
-                              Nama
-                            </FormLabel>
-                            <FormControl>
-                              <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
-                            </FormControl>
-                            <FormMessage />
-                            <FormLabel className="text-labelForm">
-                              Nomor Telepon
-                            </FormLabel>
-                            <FormControl>
-                              <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
-                            </FormControl>
-                            <FormMessage />
-                            <FormLabel className="text-labelForm">
-                              Asal Kota
-                            </FormLabel>
-                            <FormControl>
-                              <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
-                            </FormControl>
-                            <FormMessage />
-                            <FormLabel className="text-labelForm">
-                              Nama Instagram
-                            </FormLabel>
-                            <FormControl>
-                              <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
-                            </FormControl>
-                            <FormMessage />
-                          </div>
-                          <div className="col-span-6">
-                            <FormLabel className="text-labelForm">
-                              Nama Cosplay
-                            </FormLabel>
-                            <FormControl>
-                              <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
-                            </FormControl>
-                            <FormMessage />
-                            <FormLabel className="text-labelForm">
-                              Judul Lagu
-                            </FormLabel>
-                            <FormControl>
-                              <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
-                            </FormControl>
-                            <FormLabel className="text-labelForm">
-                              Upload Lagu
-                            </FormLabel>
-                            <FormControl>
-                              <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
-                            </FormControl>
-                          </div>
-                        </div>
-                      </FormItem>
-                    )}
-                  />
-                </FormProvider>
               </>
             </div>
           </div>

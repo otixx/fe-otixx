@@ -7,13 +7,20 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { PlusCircledIcon } from "@radix-ui/react-icons";
 import { Input } from "@/components/ui/input";
 import { useTransactionForm } from "@/hook/useTransactionForm";
 import { buttonVariants } from "./ui/button";
 import { Checkbox } from "./ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
+import { UploadCloud } from "lucide-react";
 interface ITransaction {
   formName: string;
   kategori: string;
@@ -99,13 +106,13 @@ const TransactionForm = ({ formName, kategori }: ITransaction) => {
                     )}
                     {(kategori === "coscomp" ||
                       kategori === "musik" ||
-                      kategori === "coswalk") && (
+                      kategori === "perform") && (
                       <>
                         <FormLabel className="text-labelForm">
                           Judul Lagu
                         </FormLabel>
                         <FormControl>
-                          <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
+                          <Input className="c mb-4 mt-1 h-12 border border-borderForm" />
                         </FormControl>
                         <FormMessage />
                       </>
@@ -126,77 +133,38 @@ const TransactionForm = ({ formName, kategori }: ITransaction) => {
                         <FormLabel className="font-medium text-labelForm">
                           Jenis Produk Usaha
                         </FormLabel>
-                        <RadioGroup
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                          className="flex items-center gap-10 space-y-1"
-                        >
-                          <FormItem className="flex items-center space-x-3 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="all" />
-                            </FormControl>
-                            <FormLabel className="font-medium text-labelForm">
-                              Food
-                            </FormLabel>
-                          </FormItem>
-                          <FormItem className="flex items-center space-x-3 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="mentions" />
-                            </FormControl>
-                            <FormLabel className="font-medium text-labelForm">
-                              Photobooth
-                            </FormLabel>
-                          </FormItem>
-                          <FormItem className="flex items-center space-x-3 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="none" />
-                            </FormControl>
-                            <FormLabel className="font-medium text-labelForm">
-                              Lainnya
-                            </FormLabel>
-                          </FormItem>
-                        </RadioGroup>
+                        <Select>
+                          <SelectTrigger className="mb-4 mt-1 h-12 w-96 border border-borderForm">
+                            <SelectValue placeholder="Pilih jenis usaha" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="light">Food</SelectItem>
+                            <SelectItem value="dark">Photobooth</SelectItem>
+                            <SelectItem value="system">Lainnya</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </div>
                     )}
                     {kategori === "perform" && (
                       <div className="mb-4 space-y-2">
                         <FormLabel className="font-medium text-labelForm">
-                          Kategori Perform
+                          Kategori perform
                         </FormLabel>
-                        <RadioGroup
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                          className="flex items-center gap-10 space-y-1"
-                        >
-                          <FormItem className="flex items-center space-x-3 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="all" />
-                            </FormControl>
-                            <FormLabel className="font-medium text-labelForm">
-                              Dance Cover
-                            </FormLabel>
-                          </FormItem>
-                          <FormItem className="flex items-center space-x-3 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="mentions" />
-                            </FormControl>
-                            <FormLabel className="font-medium text-labelForm">
-                              Dubbing
-                            </FormLabel>
-                          </FormItem>
-                          <FormItem className="flex items-center space-x-3 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="none" />
-                            </FormControl>
-                            <FormLabel className="font-medium text-labelForm">
-                              Lainnya
-                            </FormLabel>
-                          </FormItem>
-                        </RadioGroup>
+                        <Select>
+                          <SelectTrigger className="mb-4 mt-1 h-12 w-96 border border-borderForm">
+                            <SelectValue placeholder="Pilih kategori perform" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="light">Dance Cover</SelectItem>
+                            <SelectItem value="dark">Dubbing</SelectItem>
+                            <SelectItem value="system">Lainnya</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </div>
                     )}
 
-                    {kategori === "standkomunitas" && (
+                    {(kategori === "standkomunitas" ||
+                      kategori === "perform") && (
                       <>
                         <FormLabel className="text-labelForm">
                           Jika Lainnya
@@ -209,20 +177,40 @@ const TransactionForm = ({ formName, kategori }: ITransaction) => {
                     )}
                     {(kategori === "coscomp" ||
                       kategori === "musik" ||
-                      kategori === "coswalk") && (
+                      kategori === "perform") && (
                       <>
                         <FormLabel className="text-labelForm">
                           Upload Lagu
                         </FormLabel>
-                        <FormControl>
-                          <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
-                        </FormControl>
-                        <FormMessage />
+                        <div className="relative mt-2 flex w-96 items-center">
+                          <label
+                            htmlFor="dropzone-file"
+                            className="duration-400 flex w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-borderForm transition-all hover:bg-gray-100"
+                          >
+                            <div className="flex flex-col items-center justify-center gap-1 rounded-md p-5">
+                              <UploadCloud
+                                className="text-labelForm"
+                                size={18}
+                              />
+                              <h1 className="text-sm font-semibold text-labelForm">
+                                Upload lagu
+                              </h1>
+                              <p className="text-xs text-[#FF3535]">
+                                File maksimal ukuran 5 Mb
+                              </p>
+                            </div>
+                            <input
+                              type="file"
+                              className="hidden"
+                              id="dropzone-file"
+                            />
+                          </label>
+                        </div>
                       </>
                     )}
                     {(kategori === "coscomp" ||
                       kategori === "musik" ||
-                      kategori === "coswalk") && (
+                      kategori === "perform") && (
                       <>
                         <div className="flex h-12 items-center gap-2">
                           <Checkbox />
@@ -236,7 +224,7 @@ const TransactionForm = ({ formName, kategori }: ITransaction) => {
             )}
           />
         </FormProvider>
-        {(kategori === "coscomp" || kategori === "perform") && check && (
+        {(kategori === "coscomp" || kategori === "perform") && (
           <div className="py-10">
             <h3 className="mb-4 text-lg font-semibold">Data Team</h3>
             <FormProvider {...form}>
