@@ -14,6 +14,8 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import TransactionForm from "@/components/TransactionForm";
 import { useTransactionForm } from "@/hook/useTransactionForm";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 
 const TransactionPage = () => {
   const form = useForm();
@@ -210,9 +212,16 @@ const TransactionPage = () => {
                 <p>Total</p>
                 <p className="text-first">Rp45.235</p>
               </div>
-              <button className="w-full rounded-lg bg-first px-6 py-3 text-white">
+              <Link
+                href="/thankyou"
+                className={buttonVariants({
+                  size: "lg",
+                  variant: "ghost",
+                  className: "w-full rounded-lg bg-first px-6 py-3 text-white",
+                })}
+              >
                 Bayar Tiket
-              </button>
+              </Link>
             </div>
           </div>
           <div className="col-span-9">
