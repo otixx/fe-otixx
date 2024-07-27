@@ -4,7 +4,7 @@ interface IMembersForm {
   id: number;
 }
 export const useTransactionForm = () => {
-  const [kategori, setKategori] = useState("perform");
+  const [kategori, setKategori] = useState("coscomp");
   const [check, setChek] = useState(false);
   const [members, setMembers] = useState<IMembersForm[]>([{ id: 1 }]);
   const addMember = () => {

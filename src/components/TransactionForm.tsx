@@ -20,7 +20,7 @@ import { useTransactionForm } from "@/hook/useTransactionForm";
 import { buttonVariants } from "./ui/button";
 import { Checkbox } from "./ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
-import { UploadCloud } from "lucide-react";
+import { UploadCloud, UserRound } from "lucide-react";
 interface ITransaction {
   formName: string;
   kategori: string;
@@ -39,6 +39,14 @@ const TransactionForm = ({ formName, kategori }: ITransaction) => {
             name={formName}
             render={({ field }) => (
               <FormItem>
+                <div>
+                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold">
+                    <span>
+                      <UserRound size={24} />
+                    </span>
+                    Pemesan 1
+                  </h3>
+                </div>
                 <div className="grid grid-cols-12">
                   <div className="col-span-6">
                     <FormLabel className="text-labelForm">
@@ -112,7 +120,7 @@ const TransactionForm = ({ formName, kategori }: ITransaction) => {
                           Judul Lagu
                         </FormLabel>
                         <FormControl>
-                          <Input className="c mb-4 mt-1 h-12 border border-borderForm" />
+                          <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
                         </FormControl>
                         <FormMessage />
                       </>
@@ -224,6 +232,7 @@ const TransactionForm = ({ formName, kategori }: ITransaction) => {
             )}
           />
         </FormProvider>
+
         {(kategori === "coscomp" || kategori === "perform") && (
           <div className="py-10">
             <h3 className="mb-4 text-lg font-semibold">Data Team</h3>
