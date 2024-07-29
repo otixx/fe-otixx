@@ -20,7 +20,7 @@ const config = {
 
     extend: {
       colors: {
-        first: "#892CDC",
+        first: "#6D28D9",
         second: "#F7F2FF",
         textSecondary: "#747264",
         borderForm: "#9E9E9E",

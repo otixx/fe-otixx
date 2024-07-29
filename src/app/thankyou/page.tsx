@@ -8,6 +8,7 @@ import {
   Calendar,
   ClipboardList,
   CreditCard,
+  Download,
   Files,
   Info,
   MapPin,
@@ -15,10 +16,21 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 const PageThankyou = () => {
   const { kategori } = useTransactionForm();
+  const data = [
+    {
+      type: "bank",
+      account_type: "BCA",
+    },
+    {
+      type: "QRIS",
+      account_type: "QRIS",
+    },
+  ];
+  const [payment, setPayment] = useState(data[0]);
 
   return (
     <div>
@@ -58,10 +70,10 @@ const PageThankyou = () => {
               <div className="w-16 rounded-full bg-first py-2 text-center text-sm text-white">
                 {kategori}
               </div>
-              <h2 className="text-prime mt-2 w-1/3 text-4xl font-bold">
+              <h2 className="mt-2 w-1/3 text-4xl font-bold text-first">
                 Summer Sale Great Akiba
               </h2>
-              <div className="text-prime mt-2 flex items-center gap-2 text-sm">
+              <div className="mt-2 flex items-center gap-2 text-sm text-first">
                 <MapPin size={23} className="text-first" />
                 <span>Lippo Plaza Mall Jember, Jawa Timur</span>
               </div>
@@ -137,58 +149,107 @@ const PageThankyou = () => {
               </div>
               <hr className="dashed-line" />
 
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 font-semibold">
-                  <Info />
-                  Petunjuk Pembayaran
-                </div>
-              </div>
-
-              <h1 className="flex flex-col">
-                <span>1. Buka aplikasi Gopay.</span>
-                <span>2. Pilih bayar dengan QRIS.</span>
-                <span>
-                  3. Scan QR Code atau download QR Code untuk menggunakan
-                  gambar.
-                </span>
-                <span>
-                  4. Pastikan harga yang akan di bayarkan sudah sesuai.
-                </span>
-                <span>5. Cek status pembayaran.</span>
-              </h1>
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2 font-semibold">
-                  <CreditCard />
-                  Metode Pembayaran
-                </div>
-                <div className="flex items-center gap-2">
-                  <Files />
-                  <span className="text-first">
-                    INV/c8892a91-7155-40bd-8c16-707ff00a653a
-                  </span>
-                </div>
-              </div>
-              <div className="container mx-auto px-5 py-2">
-                <p className="font-semibold">QRIS</p>
-              </div>
-              <div className="w-72 rounded-lg border border-borderForm bg-white p-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <Image alt="qris" src="/qris.png" width={50} height={50} />
-                    <p className="text-prime mt-2 font-semibold">Rp40.235</p>
+              <div className="grid grid-cols-4 space-y-8">
+                <div className="col-span-2">
+                  <div className="flex items-center gap-2 font-semibold">
+                    <Info />
+                    Petunjuk Pembayaran
                   </div>
-                  <input type="radio" name="payment" className="mt-2" />
+                </div>
+                <div className="col-span-4">
+                  <h1 className="flex flex-col space-y-1 pl-10">
+                    <span>1. Buka aplikasi Gopay.</span>
+                    <span>2. Pilih bayar dengan QRIS.</span>
+                    <span>
+                      3. Scan QR Code atau download QR Code untuk menggunakan
+                      gambar.
+                    </span>
+                    <span>
+                      4. Pastikan harga yang akan di bayarkan sudah sesuai.
+                    </span>
+                    <span>5. Cek status pembayaran.</span>
+                  </h1>
+                </div>
+                <div className="col-span-2">
+                  <div className="flex items-center gap-2 font-semibold">
+                    <CreditCard />
+                    Metode Pembayaran
+                  </div>
+                </div>
+                <div className="col-span-2">
+                  <div className="flex items-center gap-2">
+                    <div className="ml-auto flex items-center gap-2">
+                      <Files />
+                      <span className="text-first">
+                        INV/c8892a91-7155-40bd-8c16-707ff00a653a
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-span-2">
+                  <>
+                    <div className="container mx-auto px-5 py-2">
+                      <p className="font-semibold">{payment?.account_type}</p>
+                    </div>
+                    <div className="ml-5 w-72 rounded-lg border border-borderForm bg-white p-4">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <Image
+                            alt="qris"
+                            src="/qris.png"
+                            width={50}
+                            height={50}
+                          />
+                          <p className="mt-2 font-semibold text-first">
+                            Rp40.235
+                          </p>
+                        </div>
+                        {payment?.type !== "bank" && (
+                          <input type="radio" name="payment" className="mt-2" />
+                        )}
+                      </div>
+                    </div>
+                    {payment?.type === "bank" && (
+                      <div className="ml-5 py-2">
+                        <div className="flex cursor-pointer items-center gap-2 transition duration-300 hover:text-first">
+                          <Files size={24} />
+                          <p>2349238402380</p>
+                        </div>
+                      </div>
+                    )}
+                  </>
+                </div>
+                <div className="col-span-2 space-y-2">
+                  <div className="flex w-full justify-center">
+                    {payment.type !== "bank" && (
+                      <div className="flex w-52 flex-col items-center justify-center space-y-2 rounded-lg border border-textSecondary p-5">
+                        <>
+                          <h1 className="text-sm">Scan QR Code</h1>
+                          <Image
+                            width={100}
+                            height={100}
+                            src="/barcode.png"
+                            alt="qr"
+                          />
+                          <div className="flex items-center gap-2">
+                            <Download size={17} />
+                            <p className="text-xs">Unduh QR Code</p>
+                          </div>
+                        </>
+                      </div>
+                    )}
+                  </div>
+                  <h1 className="text-center text-xs text-[#FF3535]">
+                    Selesaikan pembayaran sebelum tanggal
+                    <span className="font-semibold">
+                      23 Juli 2024 23.00 WIB
+                    </span>
+                  </h1>
                 </div>
               </div>
-              <div className="mt-5 flex items-center gap-1">
-                <Files />
-                <span className="text-first"></span>
-                817289218127271719291821828
-              </div>
-              <div>tgest</div>
             </div>
           </div>
-          <div className="col-span-3 mx-auto w-10/12">
+          <div className="col-span-3 mx-auto w-full">
             {/* Beli Tiket Button  */}
             <div className="space-y-5 rounded-lg bg-second p-5">
               <h3 className="mb-2 flex items-center gap-2 text-lg font-semibold">
@@ -211,14 +272,21 @@ const PageThankyou = () => {
                 <p className="font-medium text-first">Rp5.000</p>
               </div>
               <hr className="dashed-line" />
-
               <div className="mb-4 flex justify-between text-lg font-bold">
                 <p>Total</p>
                 <p className="text-first">Rp45.235</p>
               </div>
-              <button className="w-full rounded-lg bg-first px-6 py-3 text-white">
-                Bayar Tiket
-              </button>
+              <Link
+                href="/history"
+                className={buttonVariants({
+                  size: "btnNavbar",
+                  variant: "ghost",
+                  className:
+                    "h-[60px] w-[282px] rounded-xl bg-first px-6 py-3 text-base text-white",
+                })}
+              >
+                Cek Status Pembayaran
+              </Link>
             </div>
           </div>
         </div>

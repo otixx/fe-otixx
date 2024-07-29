@@ -19,7 +19,7 @@ const Navbar = () => {
             <Link
               href="/"
               className={buttonVariants({
-                size: "lg",
+                size: "btnNavbar",
                 variant: "ghost",
               })}
             >
@@ -28,7 +28,7 @@ const Navbar = () => {
             <Link
               href="/user/eo/register"
               className={buttonVariants({
-                size: "lg",
+                size: "btnNavbar",
                 className: "hidden items-center gap-1 sm:flex",
               })}
             >

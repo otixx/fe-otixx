@@ -1,10 +1,14 @@
+"use client";
 import Breadcrumb from "@/components/Breadcrumb";
 import CardDate from "@/components/Date";
 import Option from "@/components/option";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 const TicketDetailContent: React.FC = () => {
+  const tabs = ["Deskripsi", "Rundown", "Syarat dan Ketentuan"];
+  const [activeTab, setActiveTab] = useState(tabs[0]);
+
   return (
     <div>
       <Breadcrumb text="Halaman Detail Tiket" />
@@ -34,9 +38,19 @@ const TicketDetailContent: React.FC = () => {
             <div className="md:col-span-2">
               <div className="rounded-lg bg-white p-4">
                 <div className="flex gap-4">
-                  <h3 className="text-prime mb-4 font-bold">Deskripsi</h3>
-                  <h3 className="mb-4">Rundown</h3>
-                  <h3 className="mb-4">Syarat dan Ketentuan</h3>
+                  {tabs.map((tab) => (
+                    <button
+                      key={tab}
+                      onClick={() => setActiveTab(tab)}
+                      className={`rounded py-2 ${
+                        activeTab === tab
+                          ? "font-semibold text-first underline"
+                          : "text-textSecondary"
+                      }`}
+                    >
+                      {tab}
+                    </button>
+                  ))}
                 </div>
                 <p>
                   Juny the renowned Canadian artist based in Seoul, South Korea
