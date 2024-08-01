@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import { Calendar, AlarmClock, Ticket } from "lucide-react";
 import Link from "next/link";
 
-const page = () => {
+const Page = () => {
   const tabs = ["Belum Bayar", "Menunggu", "Selesai"];
   const [activeTab, setActiveTab] = useState("Belum Bayar");
   return (
@@ -136,4 +136,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
