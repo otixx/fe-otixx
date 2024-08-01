@@ -25,6 +25,7 @@ const config = {
         textSecondary: "#747264",
         borderForm: "#9E9E9E",
         labelForm: "#333333",
+        dangerbtn: "#FF3535",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

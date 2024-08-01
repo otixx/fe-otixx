@@ -9,7 +9,7 @@ const EventCard: React.FC<EventCardProps> = ({ index }) => (
   <Link href="/tiket">
     <div key={index} className="rounded-2xl bg-white">
       <div className="relative">
-        <div className="h-80 w-full">
+        <div className="h-[101px] w-[171px] md:h-80 md:w-full lg:h-80 lg:w-full">
           <Image
             src="/dash.png"
             layout="fill"
@@ -30,14 +30,16 @@ const EventCard: React.FC<EventCardProps> = ({ index }) => (
           <div className="text-xs text-gray-500">2024</div>
         </div>
         <div className="ml-4">
-          <h3 className="text-lg font-bold">Summer Sale Great Akiba</h3>
-          <p className="text-gray-500">di Surabaya</p>
+          <h3 className="text-xs font-bold md:text-lg">
+            Summer Sale Great Akiba
+          </h3>
+          <p className="text-xs text-gray-500">di Surabaya</p>
         </div>
       </div>
       <div className="mt-2 flex items-center p-5">
         <span className="flex items-center text-sm text-purple-500">
           <i className="fas fa-user mr-1"></i>
-          <p className="font-semibold">Great Akibas</p>
+          <p className="text-[8px] font-semibold md:text-sm">Great Akibas</p>
         </span>
         <span className="ml-auto font-bold text-purple-500">Rp20.000</span>
       </div>

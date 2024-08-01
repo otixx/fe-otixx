@@ -67,7 +67,7 @@ const PageThankyou = () => {
           </div>
           <div className="col-span-9">
             <div className="mb-8">
-              <div className="w-16 rounded-full bg-first py-2 text-center text-sm text-white">
+              <div className="w-20 rounded-full bg-first py-2 text-center text-sm text-white">
                 {kategori}
               </div>
               <h2 className="mt-2 w-1/3 text-4xl font-bold text-first">
@@ -178,7 +178,7 @@ const PageThankyou = () => {
                 </div>
                 <div className="col-span-2">
                   <div className="flex items-center gap-2">
-                    <div className="ml-auto flex items-center gap-2">
+                    <div className="flex items-center justify-center gap-2">
                       <Files />
                       <span className="text-first">
                         INV/c8892a91-7155-40bd-8c16-707ff00a653a
@@ -191,7 +191,7 @@ const PageThankyou = () => {
                     <div className="container mx-auto px-5 py-2">
                       <p className="font-semibold">{payment?.account_type}</p>
                     </div>
-                    <div className="ml-5 w-72 rounded-lg border border-borderForm bg-white p-4">
+                    <div className="ml-5 w-72 rounded-lg border border-borderForm p-4">
                       <div className="flex items-center justify-between">
                         <div>
                           <Image
@@ -213,33 +213,31 @@ const PageThankyou = () => {
                       <div className="ml-5 py-2">
                         <div className="flex cursor-pointer items-center gap-2 transition duration-300 hover:text-first">
                           <Files size={24} />
-                          <p>2349238402380</p>
+                          <p>817289218127271719291821828</p>
                         </div>
                       </div>
                     )}
                   </>
                 </div>
                 <div className="col-span-2 space-y-2">
-                  <div className="flex w-full justify-center">
-                    {payment.type !== "bank" && (
+                  {payment.type !== "bank" && (
+                    <div className="flex w-full justify-center">
                       <div className="flex w-52 flex-col items-center justify-center space-y-2 rounded-lg border border-textSecondary p-5">
-                        <>
-                          <h1 className="text-sm">Scan QR Code</h1>
-                          <Image
-                            width={100}
-                            height={100}
-                            src="/barcode.png"
-                            alt="qr"
-                          />
-                          <div className="flex items-center gap-2">
-                            <Download size={17} />
-                            <p className="text-xs">Unduh QR Code</p>
-                          </div>
-                        </>
+                        <h1 className="text-sm">Scan QR Code</h1>
+                        <Image
+                          width={100}
+                          height={100}
+                          src="/barcode.png"
+                          alt="qr"
+                        />
+                        <div className="flex items-center gap-2">
+                          <Download size={17} />
+                          <p className="text-xs">Unduh QR Code</p>
+                        </div>
                       </div>
-                    )}
-                  </div>
-                  <h1 className="text-center text-xs text-[#FF3535]">
+                    </div>
+                  )}
+                  <h1 className="flex gap-2 text-xs text-[#FF3535]">
                     Selesaikan pembayaran sebelum tanggal
                     <span className="font-semibold">
                       23 Juli 2024 23.00 WIB
