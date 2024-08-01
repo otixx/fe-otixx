@@ -39,7 +39,7 @@ const EventCard: React.FC<EventCardProps> = ({ index }) => (
       <div className="mt-2 flex items-center p-5">
         <span className="flex items-center text-sm text-purple-500">
           <i className="fas fa-user mr-1"></i>
-          <p className="text-[8px] font-semibold md:text-sm">Great Akibas</p>
+          <p className="text-[10px] font-semibold md:text-sm">Great Akibas</p>
         </span>
         <span className="ml-auto font-bold text-purple-500">Rp20.000</span>
       </div>
