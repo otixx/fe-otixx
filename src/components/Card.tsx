@@ -18,7 +18,7 @@ const EventCard: React.FC<EventCardProps> = ({ index }) => (
             alt="tiket"
           />
         </div>
-        <span className="absolute right-0 top-0 rounded-bl-2xl rounded-tr-2xl bg-purple-500 px-6 py-2 text-sm font-bold text-white">
+        <span className="absolute right-0 top-0 rounded-bl-2xl rounded-tr-2xl bg-purple-500 px-3 py-2 text-xs font-bold text-white md:px-6 md:text-sm">
           Visitor
         </span>
       </div>
@@ -41,7 +41,9 @@ const EventCard: React.FC<EventCardProps> = ({ index }) => (
           <i className="fas fa-user mr-1"></i>
           <p className="text-[10px] font-semibold md:text-sm">Great Akibas</p>
         </span>
-        <span className="ml-auto font-bold text-purple-500">Rp20.000</span>
+        <span className="ml-auto text-xs font-bold text-purple-500 md:text-base">
+          Rp20.000
+        </span>
       </div>
     </div>
   </Link>

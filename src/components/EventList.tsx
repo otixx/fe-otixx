@@ -3,13 +3,13 @@ import EventCard from "./Card";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 
 const EventList: React.FC = () => (
-  <div className="bg-[#F7F2FF] py-24">
+  <div className="bg-[#F7F2FF] py-2 md:py-24 lg:py-24">
     <MaxWidthWrapper className="my-10">
-      <div className="my-10 flex items-center justify-between">
+      <div className="my-2 flex items-center justify-between md:my-10">
         <h2 className="text-2xl font-bold text-black">Acara Mendatang</h2>
         <a
           href="#"
-          className="flex items-center gap-2 text-sm font-semibold text-purple-500"
+          className="hidden items-center gap-2 text-sm font-semibold text-purple-500 md:flex"
         >
           Lihat lebih banyak <ArrowRightIcon />
         </a>
