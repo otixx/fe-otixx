@@ -6,6 +6,7 @@ import MaxWidthWrapper from "./MaxWidthWrapper";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Menu } from "lucide-react";
 const Navbar = () => {
+  const isLog = true;
   return (
     <nav className="sticky inset-x-0 top-0 z-10 h-20 w-full border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
@@ -26,21 +27,32 @@ const Navbar = () => {
                   <Menu size={23} className="text-first" />
                 </Button>
               </SheetTrigger>
-              <SheetContent className="w-60 bg-second text-xs">
-                <div className="mt-10 space-y-5 py-4">
-                  <div className="transition duration-300">
-                    <Link href="/profile">Profile EO</Link>
+              <SheetContent className="w-44 bg-second text-sm font-medium">
+                {isLog ? (
+                  <div className="mt-10 space-y-5 py-4">
+                    <div className="transition duration-300">
+                      <Link href="/profile">Profile EO</Link>
+                    </div>
+                    <div className="transition duration-300">
+                      <Link href="/profile">Tiket Saya</Link>
+                    </div>
+                    <div className="transition duration-300">
+                      <Link href="/profile">Detail Profile</Link>
+                    </div>
+                    <div className="transition duration-300">
+                      <Link href="/profile">Keluar</Link>
+                    </div>
                   </div>
-                  <div className="transition duration-300">
-                    <Link href="/profile">Tiket Saya</Link>
+                ) : (
+                  <div className="mt-10 space-y-5 py-4">
+                    <div className="transition duration-300">
+                      <Link href="/profile">Daftar</Link>
+                    </div>
+                    <div className="transition duration-300">
+                      <Link href="/profile">Masuk</Link>
+                    </div>
                   </div>
-                  <div className="transition duration-300">
-                    <Link href="/profile">Detail Profile</Link>
-                  </div>
-                  <div className="transition duration-300">
-                    <Link href="/profile">Keluar</Link>
-                  </div>
-                </div>
+                )}
               </SheetContent>
             </Sheet>
             <Link

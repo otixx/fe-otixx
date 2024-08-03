@@ -19,6 +19,14 @@ const EventList: React.FC = () => (
           <EventCard key={index} index={index} />
         ))}
       </div>
+      <div className="mt-5 flex justify-center md:hidden">
+        <a
+          href="#"
+          className="flex items-center gap-2 text-sm font-semibold text-purple-500"
+        >
+          Lihat lebih banyak <ArrowRightIcon />
+        </a>
+      </div>
     </MaxWidthWrapper>
   </div>
 );

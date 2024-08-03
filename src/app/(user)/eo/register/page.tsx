@@ -22,7 +22,6 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { FormProvider, useForm } from "react-hook-form";
 import React from "react";
-import PageThankyou from "@/app/thankyou/page";
 
 const PageRegister = () => {
   const form = useForm();
@@ -41,17 +40,17 @@ const PageRegister = () => {
                   <FormItem>
                     <FormLabel>Nama EO</FormLabel>
                     <FormControl>
-                      <Input />
+                      <Input className="border-textSecondary" />
                     </FormControl>
                     <FormMessage />
                     <FormLabel>Nomor Telepon</FormLabel>
                     <FormControl>
-                      <Input />
+                      <Input className="border-textSecondary" />
                     </FormControl>
                     <FormMessage />
                     <FormLabel>Kota</FormLabel>
                     <Select>
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger className="w-full border-textSecondary">
                         <SelectValue placeholder="Pilih Kota" />
                       </SelectTrigger>
                       <SelectContent>
@@ -62,7 +61,7 @@ const PageRegister = () => {
                     </Select>
                     <FormLabel>Instagram</FormLabel>
                     <FormControl>
-                      <Input />
+                      <Input className="border-textSecondary" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -74,7 +73,7 @@ const PageRegister = () => {
             <FormProvider {...form}>
               <FormItem>
                 <FormLabel>Deskripsi Singkat EO</FormLabel>
-                <Textarea />
+                <Textarea className="border-textSecondary" />
                 <div className="flex h-4 w-full items-center pt-5">
                   <Checkbox id="terms" />
                   <label
@@ -93,11 +92,18 @@ const PageRegister = () => {
           </div>
         </div>
         <div className="flex w-full justify-end pt-10">
-          <Button className={buttonVariants({ size: "lg" })}>Daftar</Button>
+          <Button
+            className={buttonVariants({
+              size: "lg",
+              className: "w-full md:w-1/12",
+            })}
+          >
+            Daftar
+          </Button>
         </div>
       </MaxWidthWrapper>
     </div>
   );
 };
 
-export default PageThankyou;
+export default PageRegister;

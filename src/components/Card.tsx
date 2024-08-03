@@ -30,7 +30,7 @@ const EventCard: React.FC<EventCardProps> = ({ index }) => (
           <div className="text-xs text-gray-500">2024</div>
         </div>
         <div className="ml-4">
-          <h3 className="text-xs font-bold md:text-lg">
+          <h3 className="text-xs font-semibold md:text-lg">
             Summer Sale Great Akiba
           </h3>
           <p className="text-xs text-gray-500">di Surabaya</p>
