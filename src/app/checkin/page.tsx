@@ -1,7 +1,9 @@
 "use client";
+import Barcode from "@/components/Barcode";
 import Breadcrumb from "@/components/Breadcrumb";
-import CardDate from "@/components/Date";
+import CardCheckin from "@/components/CardCheckin";
 import Option from "@/components/option";
+import { LucideMapPin } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -14,7 +16,7 @@ const TicketDetailContent: React.FC = () => {
       <Breadcrumb text="Halaman Detail Tiket" />
       <Option className={"mt-5"} />
       <div className="container mx-auto">
-        <div className="relative">
+        <div className="relative bg-red-300">
           <div className="relative mt-5 h-64 w-full md:h-[554px]">
             <Image
               src="/banner.jpg"
@@ -24,16 +26,21 @@ const TicketDetailContent: React.FC = () => {
               alt="Event Banner"
             />
             <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-black to-transparent opacity-70"></div>
-            <div className="absolute inset-0 flex flex-col items-start justify-center p-8">
-              <h2 className="text-3xl font-bold text-white md:text-5xl">
+            <div className="absolute inset-0 flex w-[65%] flex-col items-start justify-center p-8 md:bottom-60 md:w-[50%]">
+              <h2 className="text-md font-bold text-white md:text-5xl">
                 Summer Sale Great Akiba
               </h2>
-              <p className="mt-2 text-white">
+              <p className="mt-2 flex items-center gap-2 text-xs text-white md:text-base">
+                <LucideMapPin />
                 Lippo Plaza Mall Jember, Jawa Timur
               </p>
             </div>
           </div>
-          <CardDate />
+          <CardCheckin />
+          <Barcode />
+          <button className="absolute left-5 top-48 rounded-full bg-white px-4 py-2 text-xs text-first">
+            View Grate Akiba
+          </button>
         </div>
 
         <div className="mt-10 text-sm">

@@ -19,24 +19,31 @@ import { Input } from "@/components/ui/input";
 import { useTransactionForm } from "@/hook/useTransactionForm";
 import { buttonVariants } from "./ui/button";
 import { Checkbox } from "./ui/checkbox";
-import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { UploadCloud, UserRound } from "lucide-react";
-interface ITransaction {
+
+const TransactionForm = ({
+  formName,
+  kategori,
+  qty,
+}: {
   formName: string;
   kategori: string;
-}
-const TransactionForm = ({ formName, kategori }: ITransaction) => {
+  qty: number;
+}) => {
   const form = useForm();
-  const { members, check, addMember, handleCheckboxChange } =
-    useTransactionForm();
+  const { members, addMember } = useTransactionForm();
+
+  // Buat array sesuai dengan jumlah qty
+  const pemesanArray = Array.from({ length: qty }, (_, i) => i + 1);
 
   return (
     <div>
-      <>
-        <FormProvider {...form}>
+      <FormProvider {...form}>
+        {pemesanArray.map((pemesan) => (
           <FormField
+            key={pemesan}
             control={form.control}
-            name={formName}
+            name={`${formName}_pemesan_${pemesan}`}
             render={({ field }) => (
               <FormItem>
                 <div>
@@ -44,16 +51,16 @@ const TransactionForm = ({ formName, kategori }: ITransaction) => {
                     <span>
                       <UserRound size={24} />
                     </span>
-                    Pemesan 1
+                    Pemesan {pemesan}
                   </h3>
                 </div>
-                <div className="grid grid-cols-12">
-                  <div className="col-span-6">
+                <div className="grid grid-cols-12 gap-2">
+                  <div className="col-span-12 md:col-span-6">
                     <FormLabel className="text-labelForm">
                       Nama Lengkap
                     </FormLabel>
                     <FormControl>
-                      <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
+                      <Input className="mb-4 mt-1 h-12 w-full border border-borderForm" />
                     </FormControl>
                     <FormMessage />
 
@@ -63,42 +70,43 @@ const TransactionForm = ({ formName, kategori }: ITransaction) => {
                           Nama Komunitas
                         </FormLabel>
                         <FormControl>
-                          <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
+                          <Input className="mb-4 mt-1 h-12 w-full border border-borderForm" />
                         </FormControl>
                         <FormMessage />
                         <FormLabel className="text-labelForm">
                           Nama Usaha
                         </FormLabel>
                         <FormControl>
-                          <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
+                          <Input className="mb-4 mt-1 h-12 w-full border border-borderForm" />
                         </FormControl>
                         <FormMessage />
                       </>
                     )}
+
                     <FormLabel className="text-labelForm">
                       Nomor Telepon
                     </FormLabel>
                     <FormControl>
-                      <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
+                      <Input className="mb-4 mt-1 h-12 w-full border border-borderForm" />
                     </FormControl>
                     <FormMessage />
                     <FormLabel className="font-medium text-labelForm">
                       Asal Kota
                     </FormLabel>
                     <FormControl>
-                      <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
+                      <Input className="mb-4 mt-1 h-12 w-full border border-borderForm" />
                     </FormControl>
                     <FormMessage />
                     <FormLabel className="text-labelForm">
                       Nama Instagram
                     </FormLabel>
                     <FormControl>
-                      <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
+                      <Input className="mb-4 mt-1 h-12 w-full border border-borderForm" />
                     </FormControl>
                     <FormMessage />
                   </div>
 
-                  <div className="col-span-6">
+                  <div className="col-span-12 md:col-span-6">
                     {(kategori === "coscomp" ||
                       kategori === "musik" ||
                       kategori === "coswalk") && (
@@ -107,7 +115,7 @@ const TransactionForm = ({ formName, kategori }: ITransaction) => {
                           Nama Cosplay
                         </FormLabel>
                         <FormControl>
-                          <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
+                          <Input className="mb-4 mt-1 h-12 w-full border border-borderForm" />
                         </FormControl>
                         <FormMessage />
                       </>
@@ -120,7 +128,7 @@ const TransactionForm = ({ formName, kategori }: ITransaction) => {
                           Judul Lagu
                         </FormLabel>
                         <FormControl>
-                          <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
+                          <Input className="mb-4 mt-1 h-12 w-full border border-borderForm" />
                         </FormControl>
                         <FormMessage />
                       </>
@@ -131,7 +139,7 @@ const TransactionForm = ({ formName, kategori }: ITransaction) => {
                           Jumlah Stand yang Dibutuhkan
                         </FormLabel>
                         <FormControl>
-                          <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
+                          <Input className="mb-4 mt-1 h-12 w-full border border-borderForm" />
                         </FormControl>
                         <FormMessage />
                       </>
@@ -190,7 +198,7 @@ const TransactionForm = ({ formName, kategori }: ITransaction) => {
                         <FormLabel className="text-labelForm">
                           Upload Lagu
                         </FormLabel>
-                        <div className="relative mt-2 flex w-96 items-center">
+                        <div className="relative mt-2 flex w-full items-center">
                           <label
                             htmlFor="dropzone-file"
                             className="duration-400 flex w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-borderForm transition-all hover:bg-gray-100"
@@ -231,75 +239,69 @@ const TransactionForm = ({ formName, kategori }: ITransaction) => {
               </FormItem>
             )}
           />
-        </FormProvider>
+        ))}
 
-        {(kategori === "coscomp" || kategori === "perform") && (
-          <div className="py-10">
-            <h3 className="mb-4 text-lg font-semibold">Data Team</h3>
-            <FormProvider {...form}>
-              <form>
-                <div className="grid grid-cols-12">
-                  <div className="col-span-6">
-                    <FormLabel className="text-labelForm">Nama Team</FormLabel>
-                    <FormControl>
-                      <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
-                    </FormControl>
-                    <FormMessage />
+        <div className="py-10">
+          <h3 className="mb-4 text-lg font-semibold">Data Team</h3>
+          <form>
+            <div className="grid grid-cols-12 gap-2">
+              <div className="col-span-12 md:col-span-6">
+                <FormLabel className="text-labelForm">Nama Team</FormLabel>
+                <FormControl>
+                  <Input className="mb-4 mt-1 h-12 w-full border border-borderForm" />
+                </FormControl>
+                <FormMessage />
 
-                    {members.map((member, index) => (
-                      <React.Fragment key={member.id}>
-                        <FormLabel className="text-labelForm">
-                          Nama Anggota {index + 1}
-                        </FormLabel>
-                        <FormControl>
-                          <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
-                        </FormControl>
-                        <FormMessage />
-                      </React.Fragment>
-                    ))}
-                  </div>
-
-                  <div className="col-span-6">
+                {members.map((member, index) => (
+                  <React.Fragment key={member.id}>
                     <FormLabel className="text-labelForm">
-                      Jumlah Anggota
+                      Nama Anggota {index + 1}
                     </FormLabel>
                     <FormControl>
-                      <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
+                      <Input className="mb-4 mt-1 h-12 w-full border border-borderForm" />
                     </FormControl>
                     <FormMessage />
-                    {members.map((member: any, index: any) => (
-                      <React.Fragment key={member.id}>
-                        <FormLabel className="text-labelForm">
-                          Nama Cosplay {index + 1}
-                        </FormLabel>
-                        <FormControl>
-                          <Input className="mb-4 mt-1 h-12 w-96 border border-borderForm" />
-                        </FormControl>
-                        <FormMessage />
-                      </React.Fragment>
-                    ))}
-                  </div>
-                </div>
+                  </React.Fragment>
+                ))}
+              </div>
 
-                <button
-                  type="button"
-                  onClick={addMember}
-                  className={buttonVariants({
-                    size: "sm",
-                    variant: "outline",
-                    className: "w-60 border border-first",
-                  })}
-                >
-                  <span className="flex items-center gap-2 text-first">
-                    <PlusCircledIcon />
-                    Tambahkan Anggota Team
-                  </span>
-                </button>
-              </form>
-            </FormProvider>
-          </div>
-        )}
-      </>
+              <div className="col-span-12 md:col-span-6">
+                <FormLabel className="text-labelForm">Jumlah Anggota</FormLabel>
+                <FormControl>
+                  <Input className="mb-4 mt-1 h-12 w-full border border-borderForm" />
+                </FormControl>
+                <FormMessage />
+                {members.map((member, index) => (
+                  <React.Fragment key={member.id}>
+                    <FormLabel className="text-labelForm">
+                      Nama Cosplay {index + 1}
+                    </FormLabel>
+                    <FormControl>
+                      <Input className="mb-4 mt-1 h-12 w-full border border-borderForm" />
+                    </FormControl>
+                    <FormMessage />
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={addMember}
+              className={buttonVariants({
+                size: "sm",
+                variant: "outline",
+                className: "w-full border border-first",
+              })}
+            >
+              <span className="flex items-center gap-2 text-first">
+                <PlusCircledIcon />
+                Tambahkan Anggota Team
+              </span>
+            </button>
+          </form>
+        </div>
+      </FormProvider>
     </div>
   );
 };

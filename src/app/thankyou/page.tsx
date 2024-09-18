@@ -56,21 +56,21 @@ const PageThankyou = () => {
 
         <div className="grid grid-cols-12 gap-8">
           <div className="col-span-12">
-            <div className="flex h-24 w-full flex-col items-center justify-center bg-[#EDFFEE]">
-              <h1 className="text-xl font-semibold text-[#3EA544]">
+            <div className="flex h-14 w-full flex-col items-center justify-center bg-[#EDFFEE] md:h-24">
+              <h1 className="text-xs font-semibold text-[#3EA544] md:text-xl">
                 Terimakasih Atas Pembelian Tiket Anda!
               </h1>
-              <p className="font-base">
+              <p className="font-base text-xs md:text-base">
                 Harap segera menyesaikan pembayaran tiket
               </p>
             </div>
           </div>
-          <div className="col-span-9">
-            <div className="mb-8">
-              <div className="w-20 rounded-full bg-first py-2 text-center text-sm text-white">
+          <div className="col-span-12 md:col-span-9">
+            <div className="md:mb-8">
+              <div className="w-20 rounded-full bg-first text-center text-sm text-white md:py-2">
                 {kategori}
               </div>
-              <h2 className="mt-2 w-1/3 text-4xl font-bold text-first">
+              <h2 className="mt-2 w-full text-base font-bold text-first md:w-1/3 md:text-4xl">
                 Summer Sale Great Akiba
               </h2>
               <div className="mt-2 flex items-center gap-2 text-sm text-first">
@@ -79,26 +79,35 @@ const PageThankyou = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-3">
             {/* Tanggal dan waktu  */}
-            <div className="rounded-lg bg-white p-6">
-              <h3 className="mb-4 text-lg font-semibold">Tanggal & Waktu</h3>
-              <div className="mb-2 flex items-center">
-                <p className="flex items-center gap-2 text-textSecondary">
-                  <span>
-                    <Calendar size={23} />
-                  </span>
-                  01 Desember 2024
-                </p>
+            <div className="rounded-lg bg-white md:p-6">
+              <h3 className="mb-4 text-sm font-semibold md:text-lg">
+                Tanggal & Waktu
+              </h3>
+              <div className="flex items-center gap-4 md:flex-col md:items-start md:gap-0">
+                <div className="mb-2 flex items-center">
+                  <p className="flex items-center gap-2 text-xs text-textSecondary md:text-base">
+                    <span>
+                      <Calendar size={20} />
+                    </span>
+                    01 Desember 2024
+                  </p>
+                </div>
+                <div className="mb-2 flex items-center">
+                  <p className="flex items-center gap-2 text-xs text-textSecondary md:text-base">
+                    <AlarmClock size={20} />
+                    09:00 - 14:00 WIB
+                  </p>
+                </div>
               </div>
-              <div className="mb-2 flex items-center">
-                <p className="flex items-center gap-2 text-textSecondary">
-                  <AlarmClock size={23} />
-                  09:00 - 14:00 WIB
-                </p>
-              </div>
-              <p className="mb-4 text-labelForm">Sisa Tiket: 100</p>
-              <p className="mb-4 font-bold text-first">Rp20.000</p>
+
+              <p className="mb-4 text-xs text-labelForm md:text-base">
+                Sisa Tiket: 100
+              </p>
+              <p className="mb-4 text-xs font-bold text-first md:text-base">
+                Rp20.000
+              </p>
             </div>
           </div>
         </div>
@@ -106,37 +115,31 @@ const PageThankyou = () => {
         <hr className="dashed-line" />
 
         <div className="grid grid-cols-12 gap-4">
-          <div className="col-span-9">
+          <div className="col-span-12 md:col-span-9">
             <div className="bg-first-50 rounded-lg bg-second p-6">
               <h3 className="mb-4 text-lg font-semibold">
                 Detail Pembayaran {kategori}
               </h3>
-              <div className="mb-4 grid grid-cols-3 gap-4">
-                <div className="col-span-2">
+              <div className="mb-4 grid grid-cols-3 gap-2 md:gap-4">
+                <div className="col-span-3 md:col-span-2">
                   <div className="space-y-2">
                     <p className="text-sm text-textSecondary">Jenis Tiket</p>
                     <div
-                      className={`rounded-full ${kategori === "standkomersil" || kategori === "standkomunitas" ? "w-36" : "w-20"} bg-first py-2 text-center text-xs text-white`}
+                      className={`rounded-full ${kategori === "standkomersil" || kategori === "standkomunitas" ? "w-36" : "w-20"} bg-first py-1 text-center text-xs text-white md:py-2`}
                     >
                       {kategori}
                     </div>
                     <p className="mt-2 text-sm">The Summer Sale Great Akiba</p>
                   </div>
                 </div>
-                <div className="col-span-1">
-                  <div className="flex items-center justify-around gap-2">
+                <div className="col-span-3 md:col-span-1">
+                  <div className="flex items-center justify-between gap-2 md:justify-around">
                     <div>
                       <p className="text-textSecondary">Jumlah Tiket</p>
                       <div className="mt-2 flex items-center gap-3">
-                        <button className="bg-textSecondary px-2 py-1 text-sm text-white hover:bg-first">
-                          +
-                        </button>
                         <p>
-                          <span className="mr-2">X</span>2
+                          <span className="mr-2">x</span>2
                         </p>
-                        <button className="bg-textSecondary px-2 py-1 text-sm text-white hover:bg-first">
-                          -
-                        </button>
                       </div>
                     </div>
 
@@ -149,15 +152,15 @@ const PageThankyou = () => {
               </div>
               <hr className="dashed-line" />
 
-              <div className="grid grid-cols-4 space-y-8">
-                <div className="col-span-2">
-                  <div className="flex items-center gap-2 font-semibold">
+              <div className="grid grid-cols-4 space-y-2 md:space-y-8">
+                <div className="col-span-4 md:col-span-2">
+                  <div className="flex items-center gap-2 text-sm font-semibold md:text-base">
                     <Info />
                     Petunjuk Pembayaran
                   </div>
                 </div>
                 <div className="col-span-4">
-                  <h1 className="flex flex-col space-y-1 pl-10">
+                  <h1 className="flex flex-col space-y-1 px-8 text-xs md:pl-10 md:text-base">
                     <span>1. Buka aplikasi Gopay.</span>
                     <span>2. Pilih bayar dengan QRIS.</span>
                     <span>
@@ -170,23 +173,21 @@ const PageThankyou = () => {
                     <span>5. Cek status pembayaran.</span>
                   </h1>
                 </div>
-                <div className="col-span-2">
-                  <div className="flex items-center gap-2 font-semibold">
+                <div className="col-span-4 md:col-span-2">
+                  <div className="flex items-center gap-2 text-sm font-semibold md:text-base">
                     <CreditCard />
                     Metode Pembayaran
                   </div>
                 </div>
-                <div className="col-span-2">
-                  <div className="flex items-center gap-2">
-                    <div className="flex items-center justify-center gap-2">
-                      <Files />
-                      <span className="text-first">
-                        INV/c8892a91-7155-40bd-8c16-707ff00a653a
-                      </span>
-                    </div>
+                <div className="order-2 col-span-4 md:order-1 md:col-span-2">
+                  <div className="flex w-full items-center gap-2">
+                    <Files />
+                    <span className="text-xs font-medium text-first md:text-base">
+                      INV/c8892a91-7155-40bd-8c16-707ff00a653a
+                    </span>
                   </div>
                 </div>
-                <div className="col-span-2">
+                <div className="order-1 col-span-4 md:order-1 md:col-span-2">
                   <>
                     <div className="container mx-auto px-5 py-2">
                       <p className="font-semibold">{payment?.account_type}</p>
@@ -205,7 +206,12 @@ const PageThankyou = () => {
                           </p>
                         </div>
                         {payment?.type !== "bank" && (
-                          <input type="radio" name="payment" className="mt-2" />
+                          <input
+                            type="radio"
+                            name="payment"
+                            readOnly
+                            className="mt-2"
+                          />
                         )}
                       </div>
                     </div>
@@ -213,13 +219,15 @@ const PageThankyou = () => {
                       <div className="ml-5 py-2">
                         <div className="flex cursor-pointer items-center gap-2 transition duration-300 hover:text-first">
                           <Files size={24} />
-                          <p>817289218127271719291821828</p>
+                          <p className="text-xs md:text-base">
+                            817289218127271719291821828
+                          </p>
                         </div>
                       </div>
                     )}
                   </>
                 </div>
-                <div className="col-span-2 space-y-2">
+                <div className="order-2 col-span-4 space-y-2 md:order-1 md:col-span-2">
                   {payment.type !== "bank" && (
                     <div className="flex w-full justify-center">
                       <div className="flex w-52 flex-col items-center justify-center space-y-2 rounded-lg border border-textSecondary p-5">
@@ -237,7 +245,7 @@ const PageThankyou = () => {
                       </div>
                     </div>
                   )}
-                  <h1 className="flex gap-2 text-xs text-[#FF3535]">
+                  <h1 className="flex flex-col gap-2 text-xs text-[#FF3535]">
                     Selesaikan pembayaran sebelum tanggal
                     <span className="font-semibold">
                       23 Juli 2024 23.00 WIB
@@ -247,7 +255,7 @@ const PageThankyou = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-3 mx-auto w-full">
+          <div className="col-span-12 mx-auto w-full md:col-span-3">
             {/* Beli Tiket Button  */}
             <div className="space-y-5 rounded-lg bg-second p-5">
               <h3 className="mb-2 flex items-center gap-2 text-lg font-semibold">
@@ -280,7 +288,7 @@ const PageThankyou = () => {
                   size: "btnNavbar",
                   variant: "ghost",
                   className:
-                    "h-[60px] w-[282px] rounded-xl bg-first px-6 py-3 text-base text-white",
+                    "h-14 w-full rounded-xl bg-first px-6 py-3 text-base text-white md:h-[60px] md:w-[282px]",
                 })}
               >
                 Cek Status Pembayaran

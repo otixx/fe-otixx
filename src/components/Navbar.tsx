@@ -5,8 +5,8 @@ import { Button, buttonVariants } from "./ui/button";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Menu } from "lucide-react";
+import { isLogin } from "@/lib/data";
 const Navbar = () => {
-  const isLog = true;
   return (
     <nav className="sticky inset-x-0 top-0 z-10 h-20 w-full border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
@@ -28,7 +28,7 @@ const Navbar = () => {
                 </Button>
               </SheetTrigger>
               <SheetContent className="w-44 bg-second text-sm font-medium">
-                {isLog ? (
+                {isLogin ? (
                   <div className="mt-10 space-y-5 py-4">
                     <div className="transition duration-300">
                       <Link href="/profile">Profile EO</Link>

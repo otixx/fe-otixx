@@ -7,12 +7,12 @@ import React, { useState } from "react";
 import { Calendar, AlarmClock, Ticket } from "lucide-react";
 import Link from "next/link";
 
-const Page = () => {
+const RefundPage = () => {
   const tabs = ["Belum Bayar", "Menunggu", "Selesai"];
   const [activeTab, setActiveTab] = useState("Belum Bayar");
   return (
     <div>
-      <Breadcrumb text="Riwayat Transaksi" />
+      <Breadcrumb text="Halaman" />
       <div className="container mx-auto">
         <Option className={"mb-8 mt-5"} />
         <div className="bg-white">
@@ -43,7 +43,7 @@ const Page = () => {
         </div>
         <div className="space-y-4">
           {[...Array(2)].map((_, index) => (
-            <div key={index} className="rounded-lg md:p-4 lg:p-4">
+            <div key={index} className="rounded-lg p-4">
               <div className="grid grid-cols-12 gap-4 rounded-lg bg-second p-4">
                 <div className="col-span-3 row-span-3 hidden space-y-2 md:block">
                   <img
@@ -159,4 +159,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default RefundPage;
