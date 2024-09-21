@@ -10,6 +10,7 @@ import Link from "next/link";
 const Page = () => {
   const tabs = ["Belum Bayar", "Menunggu", "Selesai"];
   const [activeTab, setActiveTab] = useState("Belum Bayar");
+
   return (
     <div>
       <Breadcrumb text="Riwayat Transaksi" />

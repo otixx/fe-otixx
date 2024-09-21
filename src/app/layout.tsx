@@ -1,8 +1,10 @@
+"use client";
 import "./globals.css";
-import { constructMetadata } from "@/lib/utils";
+// import { constructMetadata } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import { poppins } from "@/lib/font";
-export const metadata = constructMetadata();
+import { SessionProvider } from "next-auth/react";
+// export const metadata = constructMetadata();
 
 export default function RootLayout({
   children,
@@ -12,8 +14,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <Navbar />
-        {children}
+        <SessionProvider>
+          <Navbar />
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );
