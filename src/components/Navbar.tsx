@@ -6,6 +6,7 @@ import MaxWidthWrapper from "./MaxWidthWrapper";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Menu } from "lucide-react";
 import { isLogin } from "@/lib/data";
+import { signIn } from "next-auth/react";
 const Navbar = () => {
   return (
     <nav className="sticky inset-x-0 top-0 z-10 h-20 w-full border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
@@ -46,7 +47,7 @@ const Navbar = () => {
                 ) : (
                   <div className="mt-10 space-y-5 py-4">
                     <div className="transition duration-300">
-                      <Link href="/profile">Daftar</Link>
+                      <Link href="/profile">Daftssdsdar</Link>
                     </div>
                     <div className="transition duration-300">
                       <Link href="/profile">Masuk</Link>
@@ -57,9 +58,9 @@ const Navbar = () => {
             </Sheet>
             <Link
               href="/"
+              onClick={() => signIn()}
               className={buttonVariants({
                 size: "btnNavbar",
-                className: "hidden",
                 variant: "ghost",
               })}
             >

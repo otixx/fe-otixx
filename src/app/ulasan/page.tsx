@@ -17,10 +17,12 @@ const page = () => {
         <div className="h-[605px] max-w-screen-xl bg-second p-2">
           <div className="grid grid-cols-12 gap-4 rounded-lg bg-second p-4">
             <div className="col-span-3 space-y-2">
-              <img
+              <Image
                 src="/dash.png"
                 alt="Event"
-                className="h-[190px] w-[315px] rounded-lg object-cover"
+                width={100}
+                height={100}
+                className="rounded-lg"
               />
             </div>
 
@@ -59,7 +61,7 @@ const page = () => {
             <div className="col-span-12 flex flex-col justify-between gap-2">
               <Textarea
                 placeholder="Your text here"
-                className="h-[157px] w-[528px] border-first p-5"
+                className="h-[157px] w-[528px] border-first p-2"
               />
             </div>
             <div className="col-span-12 mt-28 flex w-full justify-end">

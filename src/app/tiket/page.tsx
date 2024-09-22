@@ -5,10 +5,10 @@ import Option from "@/components/option";
 import Image from "next/image";
 import React, { useState } from "react";
 
-const TicketDetailContent: React.FC = () => {
+const TicketDetailContent: React.FC = ({ data }: any) => {
   const tabs = ["Deskripsi", "Rundown", "Syarat dan Ketentuan"];
   const [activeTab, setActiveTab] = useState(tabs[0]);
-
+  console.log(data);
   return (
     <div>
       <Breadcrumb text="Halaman Detail Tiket" />

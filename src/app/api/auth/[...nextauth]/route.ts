@@ -1,32 +1,67 @@
+import instance from "@/lib/axios";
+import axios from "axios";
+import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-export default NextAuth({
+
+const authOptions: NextAuthOptions = {
+  session: {
+    strategy: "jwt",
+  },
+  secret: "https://apis.otakutixx.online",
   providers: [
     CredentialsProvider({
-      // The name to display on the sign in form (e.g. "Sign in with...")
-      name: "Credentials",
-      // `credentials` is used to generate a form on the sign in page.
-      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
-      // e.g. domain, username, password, 2FA token, etc.
-      // You can pass any HTML attribute to the <input> tag through the object.
+      name: "credentials",
+      type: "credentials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
-        // Add logic here to look up the user from the credentials supplied
-        const user = { id: "1", name: "J Smith", email: "jsmith@example.com" };
-
-        if (user) {
-          // Any object returned will be saved in `user` property of the JWT
-          return user;
-        } else {
-          // If you return null then an error will be displayed advising the user to check their details.
+      async authorize(credentials) {
+        const { email, password } = credentials as {
+          email: string;
+          password: string;
+        };
+        console.log(email, password);
+        try {
+          const res: any = axios.post(
+            "https://apis.otakutixx.online/user/login",
+            {
+              username: email,
+              password: password,
+            },
+          );
+          if (!res) {
+            throw new Error(`API responded with status`);
+          }
+          console.log(res);
+          return { token: res.token, email: res.email, id: res.id };
+        } catch (error) {
+          console.error("Error during login:", error);
           return null;
-
-          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
       },
     }),
   ],
-});
+  callbacks: {
+    async jwt({ token, account, user }: any) {
+      if (account?.provider === "credentials") {
+        token.email = user.email;
+        token.role = user.role;
+      }
+      return token;
+    },
+    async session({ session, token }: any) {
+      if ("email" in token) {
+        session.user.email = token.email;
+      }
+      return session;
+    },
+  },
+  pages: {
+    signIn: "/auth/login",
+  },
+};
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };
