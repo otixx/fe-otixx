@@ -1,9 +1,12 @@
 import axios from "axios";
 
-const instance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_ENV_VARIABLE,
+const publicApi = axios.create({
+  baseURL: process.env.NEXTAUTH_URL,
 });
-instance.interceptors.request.use(
+const privateApi = axios.create({
+  baseURL: process.env.NEXTAUTH_URL,
+});
+privateApi.interceptors.request.use(
   async function (config) {
     config.headers.Authorization = `Bearer sdsdlakjhdlahsdl`;
     return config;
@@ -13,7 +16,7 @@ instance.interceptors.request.use(
   },
 );
 
-instance.interceptors.response.use(
+privateApi.interceptors.response.use(
   async function (response) {
     return response;
   },
@@ -21,4 +24,4 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   },
 );
-export default instance;
+export { privateApi, publicApi };

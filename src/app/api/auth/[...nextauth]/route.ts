@@ -1,43 +1,40 @@
-import instance from "@/lib/axios";
 import axios from "axios";
 import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-
 const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
-  secret: "https://apis.otakutixx.online",
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: "credentials",
       type: "credentials",
       credentials: {
-        email: { label: "Email", type: "email" },
+        username: { label: "Username", type: "username" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        const { email, password } = credentials as {
-          email: string;
+        const { username, password } = credentials as {
+          username: string;
           password: string;
         };
-        console.log(email, password);
         try {
-          const res: any = axios.post(
-            "https://apis.otakutixx.online/user/login",
-            {
-              username: email,
-              password: password,
-            },
-          );
-          if (!res) {
-            throw new Error(`API responded with status`);
-          }
+          const res: any = await axios.post("/api/login", {
+            username: username,
+            password: password,
+          });
           console.log(res);
-          return { token: res.token, email: res.email, id: res.id };
+          if (!res) {
+            console.log(`API responded with status`);
+          }
+          if (res?.data?.status == 404) {
+            return res;
+          }
+          return { token: res?.data?.data };
         } catch (error) {
-          console.error("Error during login:", error);
+          console.error("Error server:", error);
           return null;
         }
       },
@@ -45,21 +42,19 @@ const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, account, user }: any) {
-      if (account?.provider === "credentials") {
-        token.email = user.email;
-        token.role = user.role;
+      if (user && account?.type && account?.provider === "credentials") {
+        token.accessToken = user?.token;
       }
       return token;
     },
     async session({ session, token }: any) {
-      if ("email" in token) {
-        session.user.email = token.email;
-      }
+      session.accessToken = token.accessToken;
       return session;
     },
   },
+
   pages: {
-    signIn: "/auth/login",
+    signIn: "/user/login",
   },
 };
 const handler = NextAuth(authOptions);

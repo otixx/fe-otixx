@@ -5,9 +5,9 @@ import { Button, buttonVariants } from "./ui/button";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Menu } from "lucide-react";
-import { isLogin } from "@/lib/data";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 const Navbar = () => {
+  const { data: session } = useSession();
   return (
     <nav className="sticky inset-x-0 top-0 z-10 h-20 w-full border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
@@ -29,7 +29,7 @@ const Navbar = () => {
                 </Button>
               </SheetTrigger>
               <SheetContent className="w-44 bg-second text-sm font-medium">
-                {isLogin ? (
+                {session?.user ? (
                   <div className="mt-10 space-y-5 py-4">
                     <div className="transition duration-300">
                       <Link href="/profile">Profile EO</Link>
@@ -47,7 +47,7 @@ const Navbar = () => {
                 ) : (
                   <div className="mt-10 space-y-5 py-4">
                     <div className="transition duration-300">
-                      <Link href="/profile">Daftssdsdar</Link>
+                      <Link href="/profile">Daftar</Link>
                     </div>
                     <div className="transition duration-300">
                       <Link href="/profile">Masuk</Link>
@@ -56,26 +56,40 @@ const Navbar = () => {
                 )}
               </SheetContent>
             </Sheet>
-            <Link
-              href="/"
-              onClick={() => signIn()}
-              className={buttonVariants({
-                size: "btnNavbar",
-                variant: "ghost",
-              })}
-            >
-              Masuk
-            </Link>
+            {session?.user ? (
+              <Button
+                onClick={() => signOut()}
+                className={buttonVariants({
+                  size: "btnNavbar",
+                  className: "items-center gap-1 sm:flex",
+                })}
+              >
+                Logout
+              </Button>
+            ) : (
+              <>
+                <Link
+                  href="/"
+                  onClick={() => signIn()}
+                  className={buttonVariants({
+                    size: "btnNavbar",
+                    variant: "ghost",
+                  })}
+                >
+                  Masuk
+                </Link>
 
-            <Link
-              href="/user/eo/register"
-              className={buttonVariants({
-                size: "btnNavbar",
-                className: "hidden items-center gap-1 sm:flex",
-              })}
-            >
-              Daftar
-            </Link>
+                <Link
+                  href="/user/eo/register"
+                  className={buttonVariants({
+                    size: "btnNavbar",
+                    className: "hidden items-center gap-1 sm:flex",
+                  })}
+                >
+                  Daftar
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </MaxWidthWrapper>
