@@ -24,8 +24,18 @@ export default function LoginPage() {
     <div className="grid h-[100dvh] grid-cols-12">
       <div className="hidden bg-first p-10 text-white xl:col-span-4 xl:block 2xl:block">
         <div className="space-y-10 md:mt-0 xl:mt-0 xl:px-14 2xl:mt-48">
-          <Link href="/" className="relative w-full font-semibold">
-            <Image src="/logo.png" alt="logo" width={200} height={200} />
+          <Link
+            href="/"
+            className="relative w-full font-semibold"
+            draggable={false}
+          >
+            <Image
+              draggable={false}
+              src="/logo.png"
+              alt="logo"
+              width={150}
+              height={150}
+            />
           </Link>
           <div>
             <h1 className="text-2xl font-medium">Selamat Datang di</h1>
@@ -37,13 +47,13 @@ export default function LoginPage() {
             terlupakan di setiap acara yang Anda nantikan!
           </p>
         </div>
-        <div className="px-14 pt-20">
+        <div className="relative mt-10 px-14">
           <Image
             draggable={false}
             src={"/auth/login.png"}
             alt="loginImg"
-            width={170}
-            height={170}
+            width={250}
+            height={250}
           />
         </div>
       </div>

@@ -23,21 +23,31 @@ export default function RegisterPage() {
     <div className="grid h-[100dvh] grid-cols-12">
       <div className="hidden bg-first p-10 text-white xl:col-span-4 xl:block 2xl:block">
         <div className="space-y-10 md:mt-0 xl:mt-0 xl:px-14 2xl:mt-14">
-          <Link href="/" className="relative w-full font-semibold">
-            <Image src="/logo.png" alt="logo" width={150} height={150} />
+          <Link
+            href="/"
+            className="relative w-full font-semibold"
+            draggable={false}
+          >
+            <Image
+              draggable={false}
+              src="/logo.png"
+              alt="logo"
+              width={150}
+              height={150}
+            />
           </Link>
           <p className="text-lg font-medium">
             Bergabunglah dan dapatkan akses mudah ke berbagai acara. Isi
             formulir di samping untuk membuat akun Anda.
           </p>
         </div>
-        <div className="relative px-14 pt-20">
+        <div className="relative mt-72 px-14">
           <Image
             draggable={false}
             src={"/auth/register.png"}
             alt="loginImg"
-            width={500}
-            height={500}
+            width={300}
+            height={300}
           />
         </div>
       </div>

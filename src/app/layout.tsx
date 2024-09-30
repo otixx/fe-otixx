@@ -13,7 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const path = usePathname();
-  const isLoginPage = path === "/user/login" || "/user/register";
+  const isLoginPage =
+    path === "/user/login" || path === "/user/register" || path === "/user/otp";
   return (
     <html lang="en">
       <body className={poppins.className}>
