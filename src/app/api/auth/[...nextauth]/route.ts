@@ -25,13 +25,13 @@ const authOptions: NextAuthOptions = {
             username: username,
             password: password,
           });
-          console.log(res);
           if (!res) {
             console.log(`API responded with status`);
           }
           if (res?.data?.status == 404) {
             return res;
           }
+          console.log(res, "ini res");
           return { token: res?.data?.data };
         } catch (error) {
           console.error("Error server:", error);
@@ -48,6 +48,7 @@ const authOptions: NextAuthOptions = {
       return token;
     },
     async session({ session, token }: any) {
+      console.log(token, "ini token");
       session.accessToken = token.accessToken;
       return session;
     },

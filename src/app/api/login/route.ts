@@ -8,6 +8,7 @@ export async function POST(req: NextRequest) {
       username: data?.username,
       password: data?.password,
     });
+    console.log(response?.data?.data);
     return NextResponse.json({
       status: 200,
       data: response?.data?.data,

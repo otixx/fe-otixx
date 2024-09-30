@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import React, { useState } from "react";
 import { Calendar, AlarmClock, Ticket } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const RefundPage = () => {
   const tabs = ["Belum Bayar", "Menunggu", "Selesai"];
@@ -45,10 +46,12 @@ const RefundPage = () => {
           {[...Array(2)].map((_, index) => (
             <div key={index} className="rounded-lg p-4">
               <div className="grid grid-cols-12 gap-4 rounded-lg bg-second p-4">
-                <div className="col-span-3 row-span-3 hidden space-y-2 md:block">
-                  <img
+                <div className="relative col-span-3 row-span-3 hidden space-y-2 md:block">
+                  <Image
                     src="/dash.png"
                     alt="Event"
+                    layout="fill"
+                    objectFit="cover"
                     className="h-[190px] w-full rounded-lg object-cover"
                   />
                 </div>

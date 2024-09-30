@@ -19,7 +19,7 @@ import { FormProvider, useForm } from "react-hook-form";
 const ProfilePage: React.FC = () => {
   const [edit, setEdit] = useState(true);
   const form = useForm();
-  console.log(edit);
+
   return (
     <div>
       <Breadcrumb text="Halaman Profile" />

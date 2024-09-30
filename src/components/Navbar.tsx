@@ -6,16 +6,22 @@ import MaxWidthWrapper from "./MaxWidthWrapper";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Menu } from "lucide-react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 const Navbar = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+  console.log(session, status);
   return (
     <nav className="sticky inset-x-0 top-0 z-10 h-20 w-full border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
         <div className="flex h-full items-center justify-between">
           <Link href="/" className="flex font-semibold">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-500">
-              <span className="font-bold text-white">Logo</span>
-            </div>
+            <Image
+              draggable={false}
+              src={"/logo.png"}
+              width={100}
+              height={100}
+              alt="logo"
+            />
           </Link>
 
           <div className="flex items-center gap-2">
