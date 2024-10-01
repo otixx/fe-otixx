@@ -1,33 +1,19 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Form } from "@/components/ui/form";
 import {
   InputOTP,
   InputOTPGroup,
-  InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { useFormReq } from "@/hook/useForm";
-import { EyeClosedIcon } from "@radix-ui/react-icons";
-import { EyeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 export default function OtpPage() {
-  const [showPassword, setshowPassword] = useState(false);
   const { formRegister } = useFormReq();
   return (
     <div className="grid h-[100dvh] grid-cols-12">
-      <div className="hidden bg-first p-10 text-white xl:col-span-4 xl:block 2xl:block">
+      <div className="hidden bg-first p-10 text-white xl:col-span-5 xl:block 2xl:block">
         <div className="space-y-10 md:mt-0 xl:mt-0 xl:px-14 2xl:mt-14">
           <Link
             href="/"
@@ -57,8 +43,8 @@ export default function OtpPage() {
           />
         </div>
       </div>
-      <div className="col-span-12 flex items-center justify-center xl:col-span-8 2xl:col-span-8">
-        <div className="mt-5 w-full max-w-lg p-5 xl:mt-0 xl:max-w-2xl 2xl:mt-0 2xl:max-w-2xl">
+      <div className="col-span-12 flex items-center justify-center md:block md:p-10 xl:col-span-7 2xl:col-span-7">
+        <div className="mt-5 w-full max-w-lg p-5 xl:mt-0 xl:max-w-2xl 2xl:mt-10 2xl:max-w-2xl">
           <h1 className="mb-10 text-center text-sm font-bold text-first xl:text-left xl:text-2xl 2xl:text-left 2xl:text-2xl">
             OTP
           </h1>
@@ -66,7 +52,7 @@ export default function OtpPage() {
           <Form {...formRegister}>
             <form
               //   onSubmit={formRegister.handleSubmit(onSubmit)}
-              className="mt-10 space-y-4"
+              className="mt-10 space-y-10"
             >
               <InputOTP maxLength={4}>
                 <InputOTPGroup>

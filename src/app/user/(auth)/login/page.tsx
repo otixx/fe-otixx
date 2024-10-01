@@ -22,8 +22,8 @@ export default function LoginPage() {
   const { formlogin } = useFormReq();
   return (
     <div className="grid h-[100dvh] grid-cols-12">
-      <div className="hidden bg-first p-10 text-white xl:col-span-4 xl:block 2xl:block">
-        <div className="space-y-10 md:mt-0 xl:mt-0 xl:px-14 2xl:mt-48">
+      <div className="hidden bg-first p-10 text-white xl:col-span-5 xl:block 2xl:block">
+        <div className="space-y-10 md:mt-0 xl:mt-0 xl:px-14 2xl:mt-14">
           <Link
             href="/"
             className="relative w-full font-semibold"
@@ -57,8 +57,8 @@ export default function LoginPage() {
           />
         </div>
       </div>
-      <div className="col-span-12 flex items-center justify-center xl:col-span-8 2xl:col-span-8">
-        <div className="mt-5 w-full max-w-lg p-5 xl:mt-0 xl:max-w-2xl 2xl:mt-0 2xl:max-w-2xl">
+      <div className="col-span-12 flex items-center justify-center md:block md:p-10 xl:col-span-7 2xl:col-span-7">
+        <div className="mt-5 w-full max-w-lg p-5 xl:mt-0 xl:max-w-2xl 2xl:mt-10 2xl:max-w-2xl">
           <h1 className="text-center text-sm font-bold text-first xl:text-left xl:text-2xl 2xl:text-left 2xl:text-2xl">
             Login untuk masuk
           </h1>
