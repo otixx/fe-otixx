@@ -38,11 +38,10 @@ const Navbar = () => {
             ) : (
               <>
                 <Link
-                  href="/"
-                  onClick={() => signIn()}
+                  href="/user/login"
                   className={buttonVariants({
                     size: "btnNavbar",
-                    className: "hidden md:block",
+                    className: "hidden md:flex",
                     variant: "ghost",
                   })}
                 >
