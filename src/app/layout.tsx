@@ -1,4 +1,5 @@
 "use client";
+import Footer from "@/components/Footer";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { poppins } from "@/lib/font";
@@ -25,6 +26,7 @@ export default function RootLayout({
         <SessionProvider>
           {!authPage && <Navbar />}
           {children}
+          <Footer />
         </SessionProvider>
       </body>
     </html>

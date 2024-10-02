@@ -25,6 +25,41 @@ const Navbar = () => {
           </Link>
 
           <div className="flex items-center gap-2">
+            {session?.user ? (
+              <Button
+                onClick={() => signOut()}
+                className={buttonVariants({
+                  size: "btnNavbar",
+                  className: "items-center gap-1 sm:flex",
+                })}
+              >
+                Logout
+              </Button>
+            ) : (
+              <>
+                <Link
+                  href="/"
+                  onClick={() => signIn()}
+                  className={buttonVariants({
+                    size: "btnNavbar",
+                    className: "hidden md:block",
+                    variant: "ghost",
+                  })}
+                >
+                  Masuk
+                </Link>
+
+                <Link
+                  href="/user/eo/register"
+                  className={buttonVariants({
+                    size: "btnNavbar",
+                    className: "hidden items-center gap-1 sm:flex",
+                  })}
+                >
+                  Daftar
+                </Link>
+              </>
+            )}
             <Sheet>
               <SheetTrigger asChild>
                 <Button
@@ -62,40 +97,6 @@ const Navbar = () => {
                 )}
               </SheetContent>
             </Sheet>
-            {session?.user ? (
-              <Button
-                onClick={() => signOut()}
-                className={buttonVariants({
-                  size: "btnNavbar",
-                  className: "items-center gap-1 sm:flex",
-                })}
-              >
-                Logout
-              </Button>
-            ) : (
-              <>
-                <Link
-                  href="/"
-                  onClick={() => signIn()}
-                  className={buttonVariants({
-                    size: "btnNavbar",
-                    variant: "ghost",
-                  })}
-                >
-                  Masuk
-                </Link>
-
-                <Link
-                  href="/user/eo/register"
-                  className={buttonVariants({
-                    size: "btnNavbar",
-                    className: "hidden items-center gap-1 sm:flex",
-                  })}
-                >
-                  Daftar
-                </Link>
-              </>
-            )}
           </div>
         </div>
       </MaxWidthWrapper>
