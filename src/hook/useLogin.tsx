@@ -6,14 +6,14 @@ import { z } from "zod";
 export const useLogin = () => {
   const router = useRouter();
   const onSubmit = async (values: z.infer<typeof formLoginSchema>) => {
+    const { username, password } = values;
     try {
       const res = await signIn("credentials", {
         redirect: false,
-        callbackUrl: "/",
-        username: values?.username,
-        password: values?.password,
+        // callbackUrl: "/",
+        username,
+        password,
       });
-      console.log(res);
       if (res?.ok && res?.status === 200) {
         router.push("/");
       }

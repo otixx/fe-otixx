@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useFormReq } from "@/hook/useForm";
-// import { useLogin } from "@/hook/useLogin";
+import { useLogin } from "@/hook/useLogin";
 import { EyeClosedIcon } from "@radix-ui/react-icons";
 import { EyeIcon } from "lucide-react";
 import Image from "next/image";
@@ -18,7 +18,7 @@ import Link from "next/link";
 import { useState } from "react";
 export default function LoginPage() {
   const [showPassword, setshowPassword] = useState(false);
-  // const { onSubmit } = useLogin();
+  const { onSubmit } = useLogin();
   const { formlogin } = useFormReq();
   return (
     <div className="grid h-[100dvh] grid-cols-12">
@@ -64,7 +64,7 @@ export default function LoginPage() {
           </h1>
           <Form {...formlogin}>
             <form
-              // onSubmit={form.handleSubmit(onSubmit)}
+              onSubmit={formlogin.handleSubmit(onSubmit)}
               className="mt-10 space-y-4"
             >
               <FormField

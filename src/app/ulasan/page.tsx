@@ -3,22 +3,11 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Option from "@/components/option";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { publicApi } from "@/lib/axios";
 import { AlarmClock, Calendar, Ticket } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-async function getData() {
-  const res = await publicApi.get("/tiket/search");
-  return res;
-}
-const page = async () => {
-  const res = await getData();
-  console.log(res);
-  if (res?.data?.status !== 200) {
-    alert("error");
-  }
 
+const page = async () => {
   return (
     <div>
       <Breadcrumb text="Pembayaran QR Code" />

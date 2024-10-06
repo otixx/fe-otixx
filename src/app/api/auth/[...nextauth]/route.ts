@@ -9,53 +9,63 @@ const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
+      id: "credentials",
       name: "credentials",
       type: "credentials",
       credentials: {
-        username: { label: "Username", type: "username" },
-        password: { label: "Password", type: "password" },
+        username: { label: "username", type: "username" },
+        password: { label: "password", type: "password" },
       },
       async authorize(credentials) {
         const { username, password } = credentials as {
           username: string;
           password: string;
         };
+        console.log(username, password);
         try {
-          const res: any = await axios.post("/api/login", {
-            username: username,
-            password: password,
-          });
-          if (!res) {
-            console.log(`API responded with status`);
-          }
-          if (res?.data?.status == 404) {
-            return res;
-          }
-          console.log(res, "ini res");
-          return { token: res?.data?.data };
+          const res: any = await axios
+            .post(`/api/login`, {
+              username: username,
+              password: password,
+            })
+            .catch((error) => {
+              throw error?.response?.data.message;
+            });
+
+          return res?.data?.data;
         } catch (error) {
-          console.error("Error server:", error);
-          return null;
+          throw new Error(JSON.stringify(error));
         }
       },
     }),
   ],
+  pages: {
+    signIn: "/user/login",
+  },
   callbacks: {
-    async jwt({ token, account, user }: any) {
-      if (user && account?.type && account?.provider === "credentials") {
-        token.accessToken = user?.token;
+    async jwt({ token, user, trigger, session }) {
+      console.log(user, "ini user");
+      if (user) {
+        token.user = user;
       }
+
+      if (trigger === "update" && session) {
+        token.user = session.user.user;
+      }
+
       return token;
     },
     async session({ session, token }: any) {
-      console.log(token, "ini token");
-      session.accessToken = token.accessToken;
+      session.user = token;
+
       return session;
     },
   },
-
-  pages: {
-    signIn: "/user/login",
+  jwt: {
+    // The maximum age of the NextAuth.js issued JWT in seconds.
+    // Defaults to `session.maxAge`.
+    maxAge: 60,
+    // You can define your own encode/decode functions for signing and encryption
   },
 };
 const handler = NextAuth(authOptions);

@@ -4,11 +4,11 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   const data = await req.json();
   try {
+    console.log(data);
     const response = await privateApi.post("/user/login", {
       username: data?.username,
       password: data?.password,
     });
-    console.log(response?.data?.data);
     return NextResponse.json({
       status: 200,
       data: response?.data?.data,
