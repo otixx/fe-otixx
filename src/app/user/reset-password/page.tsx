@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { FormProvider, useForm } from "react-hook-form";
 
-const resetPassPage: React.FC = () => {
+const ResetPassPage: React.FC = () => {
   const form = useForm();
   return (
     <div>
@@ -120,4 +120,4 @@ const resetPassPage: React.FC = () => {
   );
 };
 
-export default resetPassPage;
+export default ResetPassPage;

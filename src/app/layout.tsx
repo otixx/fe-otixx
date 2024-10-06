@@ -26,7 +26,7 @@ export default function RootLayout({
         <SessionProvider>
           {!authPage && <Navbar />}
           {children}
-          <Footer />
+          {!authPage && <Footer />}
         </SessionProvider>
       </body>
     </html>

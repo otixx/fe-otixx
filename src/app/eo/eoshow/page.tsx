@@ -1,6 +1,6 @@
 "use client";
 import Breadcrumb from "@/components/Breadcrumb";
-import EventList from "@/components/EventList";
+import EventCard from "@/components/Card";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Option from "@/components/option";
 import Image from "next/image";
@@ -10,7 +10,7 @@ const EoeventPage = () => {
   const tabs = ["Event Sekarang", "Event Sebelumnya"];
   const [activeTab, setActiveTab] = useState(tabs[0]);
   return (
-    <main>
+    <section>
       <Breadcrumb text="Halaman Detail Tiket" />
       <Option className={"mt-5"} />
       <MaxWidthWrapper className="py-5 md:py-24 lg:py-24 xl:py-2 2xl:py-24">
@@ -56,10 +56,18 @@ const EoeventPage = () => {
             ))}
           </div>
         </div>
+        <div className="mt-10 grid grid-cols-1 gap-2 lg:grid-cols-4">
+          {Array.from({ length: 8 }).map((_, index) => (
+            <EventCard
+              key={index}
+              link="/tiket/12"
+              imgUrl="/dash.png"
+              ticketType="visitor"
+            />
+          ))}
+        </div>
       </MaxWidthWrapper>
-      {/* cardnya pisahin biar bisa dipake disini  */}
-      <EventList />
-    </main>
+    </section>
   );
 };
 

@@ -13,7 +13,7 @@ import { useFormReq } from "@/hook/useForm";
 import { EyeClosedIcon } from "@radix-ui/react-icons";
 import { EyeIcon } from "lucide-react";
 import { useState } from "react";
-const resetPassidPage = () => {
+const ResetPassidPage = () => {
   const { formlogin } = useFormReq();
   const [showPassword, setshowPassword] = useState({
     pass: false,
@@ -132,4 +132,4 @@ const resetPassidPage = () => {
   );
 };
 
-export default resetPassidPage;
+export default ResetPassidPage;

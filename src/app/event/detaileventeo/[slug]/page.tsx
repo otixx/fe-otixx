@@ -2,10 +2,9 @@
 import Breadcrumb from "@/components/Breadcrumb";
 import EventCard from "@/components/Card";
 import CardDate from "@/components/Date";
-import EventList from "@/components/EventList";
 import Option from "@/components/option";
 import { Button } from "@/components/ui/button";
-import { LucideMap, LucideMapPin, LucidePin } from "lucide-react";
+import { LucideMapPin } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -75,7 +74,13 @@ const DetailTiketEOProfile: React.FC = () => {
         {activeTab === "Deskripsi" && (
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {Array.from({ length: 8 }, (_, index) => (
-              <EventCard index={index} />
+              <EventCard
+                key={index}
+                imgUrl="/dash.png"
+                link="/tiket/12"
+                ticketType="visitor"
+                index={index}
+              />
             ))}
           </div>
         )}

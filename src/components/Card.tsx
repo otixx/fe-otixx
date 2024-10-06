@@ -2,16 +2,24 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface EventCardProps {
-  index: number;
+  index?: number;
+  link: string;
+  imgUrl: string;
+  ticketType: string;
 }
 
-const EventCard: React.FC<EventCardProps> = ({ index }) => (
-  <Link href="/tiket">
-    <div key={index} className="rounded-2xl bg-white">
+const EventCard: React.FC<EventCardProps> = ({
+  index,
+  link,
+  imgUrl,
+  ticketType,
+}) => (
+  <Link href={link}>
+    <div className="rounded-2xl bg-white">
       <div className="relative">
         <div className="h-[101px] w-[171px] md:h-80 md:w-full lg:h-80 lg:w-full">
           <Image
-            src="/dash.png"
+            src={imgUrl}
             layout="fill"
             objectFit="cover"
             className="rounded-t-lg"
@@ -19,7 +27,7 @@ const EventCard: React.FC<EventCardProps> = ({ index }) => (
           />
         </div>
         <span className="absolute right-0 top-0 rounded-bl-2xl rounded-tr-2xl bg-purple-500 px-3 py-2 text-xs font-bold text-white md:px-6 md:text-sm">
-          Visitor
+          {ticketType}
         </span>
       </div>
 

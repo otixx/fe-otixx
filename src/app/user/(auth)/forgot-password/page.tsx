@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useFormReq } from "@/hook/useForm";
-const forgotPage = () => {
+const ForgotPage = () => {
   const { formlogin } = useFormReq();
   return (
     <div className="grid h-[100dvh] grid-cols-12">
@@ -57,4 +57,4 @@ const forgotPage = () => {
   );
 };
 
-export default forgotPage;
+export default ForgotPage;
