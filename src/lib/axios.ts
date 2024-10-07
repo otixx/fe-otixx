@@ -1,10 +1,10 @@
 import axios from "axios";
 
 const publicApi = axios.create({
-  baseURL: process.env.NEXTAUTH_URL,
+  baseURL: process.env.NEXTAPIOTIXX,
 });
 const privateApi = axios.create({
-  baseURL: process.env.NEXTAUTH_URL,
+  baseURL: process.env.NEXTAPIOTIXX,
 });
 privateApi.interceptors.request.use(
   async function (config) {

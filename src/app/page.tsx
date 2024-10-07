@@ -2,9 +2,12 @@
 import EventCard from "@/components/Card";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { ArrowRightIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 
 export default function Home() {
+  const { data: session, status } = useSession();
+  console.log(session, status);
   return (
     <main>
       <MaxWidthWrapper className="py-5 md:py-24 lg:py-24 xl:py-2 2xl:py-24">

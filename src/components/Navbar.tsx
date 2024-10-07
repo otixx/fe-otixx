@@ -1,15 +1,13 @@
 "use client";
-import React from "react";
-import Link from "next/link";
-import { Button, buttonVariants } from "./ui/button";
-import MaxWidthWrapper from "./MaxWidthWrapper";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Menu } from "lucide-react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
+import MaxWidthWrapper from "./MaxWidthWrapper";
+import { Button, buttonVariants } from "./ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 const Navbar = () => {
   const { data: session, status } = useSession();
-  console.log(session, status);
   return (
     <nav className="sticky inset-x-0 top-0 z-10 h-20 w-full border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
@@ -57,6 +55,8 @@ const Navbar = () => {
                 >
                   Daftar
                 </Link>
+
+                <Button onClick={() => signOut()}>Logout</Button>
               </>
             )}
             <Sheet>

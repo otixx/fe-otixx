@@ -1,5 +1,6 @@
 import axios from "axios";
-import { NextAuthOptions } from "next-auth";
+import { NextAuthOptions, Session } from "next-auth";
+import { JWT } from "next-auth/jwt";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 const authOptions: NextAuthOptions = {
@@ -9,11 +10,10 @@ const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
-      id: "credentials",
       name: "credentials",
       type: "credentials",
       credentials: {
-        username: { label: "username", type: "username" },
+        username: { label: "username", type: "text" },
         password: { label: "password", type: "password" },
       },
       async authorize(credentials) {
@@ -21,30 +21,26 @@ const authOptions: NextAuthOptions = {
           username: string;
           password: string;
         };
-        console.log(username, password);
-        try {
-          const res: any = await axios
-            .post(`/api/login`, {
-              username: username,
-              password: password,
-            })
-            .catch((error) => {
-              throw error?.response?.data.message;
-            });
-
-          return res?.data?.data;
-        } catch (error) {
-          throw new Error(JSON.stringify(error));
+        const res: any = await axios.post(
+          `${process.env.NEXTAUTH_URL}/api/login`,
+          {
+            username,
+            password,
+          },
+        );
+        if (res?.data?.status !== 200) {
+          throw Error(JSON.stringify(res?.data));
         }
+        return res?.data?.data;
       },
     }),
   ],
   pages: {
     signIn: "/user/login",
+    error: "/user/profile",
   },
   callbacks: {
     async jwt({ token, user, trigger, session }) {
-      console.log(user, "ini user");
       if (user) {
         token.user = user;
       }
@@ -55,17 +51,12 @@ const authOptions: NextAuthOptions = {
 
       return token;
     },
-    async session({ session, token }: any) {
-      session.user = token;
-
+    async session({ session, token }: { session: Session; token: JWT }) {
+      if (token) {
+        session.user = token;
+      }
       return session;
     },
-  },
-  jwt: {
-    // The maximum age of the NextAuth.js issued JWT in seconds.
-    // Defaults to `session.maxAge`.
-    maxAge: 60,
-    // You can define your own encode/decode functions for signing and encryption
   },
 };
 const handler = NextAuth(authOptions);
