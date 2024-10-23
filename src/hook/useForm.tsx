@@ -23,6 +23,7 @@ export const useFormReq = () => {
       confirm_pass: "",
       email: "",
       phone_number: "",
+      terms: false,
     },
   });
   return { formlogin, formRegister };

@@ -6,8 +6,10 @@ import Link from "next/link";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import { Button, buttonVariants } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import { ESession } from "@/type/interface/enum/session.enum";
 const Navbar = () => {
   const { data: session, status } = useSession();
+  console.log(status);
   return (
     <nav className="sticky inset-x-0 top-0 z-10 h-20 w-full border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
@@ -23,7 +25,7 @@ const Navbar = () => {
           </Link>
 
           <div className="flex items-center gap-2">
-            {session?.user ? (
+            {status === ESession?.Login ? (
               <Button
                 onClick={() => signOut()}
                 className={buttonVariants({
@@ -55,8 +57,6 @@ const Navbar = () => {
                 >
                   Daftar
                 </Link>
-
-                <Button onClick={() => signOut()}>Logout</Button>
               </>
             )}
             <Sheet>

@@ -1,6 +1,5 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -10,6 +9,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useResgiter } from "@/hook/useAuth";
 import { useFormReq } from "@/hook/useForm";
 import { EyeClosedIcon } from "@radix-ui/react-icons";
 import { EyeIcon } from "lucide-react";
@@ -19,6 +19,7 @@ import { useState } from "react";
 export default function RegisterPage() {
   const [showPassword, setshowPassword] = useState(false);
   const { formRegister } = useFormReq();
+  const { onSubmit, msg } = useResgiter();
   return (
     <div className="grid h-[100dvh] grid-cols-12">
       <div className="hidden bg-first p-10 text-white xl:col-span-5 xl:block 2xl:block">
@@ -58,7 +59,7 @@ export default function RegisterPage() {
           </h1>
           <Form {...formRegister}>
             <form
-              //   onSubmit={formRegister.handleSubmit(onSubmit)}
+              onSubmit={formRegister.handleSubmit(onSubmit)}
               className="mt-10 space-y-4"
             >
               <FormField
@@ -191,15 +192,39 @@ export default function RegisterPage() {
                 )}
               />
               <div className="flex items-center space-x-2">
-                <Checkbox id="terms" />
-                <label
-                  htmlFor="terms"
-                  className="text-sm font-medium text-textSecondary peer-disabled:cursor-not-allowed"
-                >
-                  Saya telah membaca dan menyetujui persyaratan layanan dan
-                  kebijakan privasi kami
-                </label>
+                <FormField
+                  control={formRegister.control}
+                  name="terms"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <div className="flex items-center space-x-2">
+                          <Input
+                            id="terms"
+                            className="h-4 w-4 border-gray-300 checked:border-first checked:bg-first focus:ring-first"
+                            type="checkbox"
+                            {...(field as any)}
+                          />
+                          <label
+                            htmlFor="terms"
+                            className="text-sm font-medium text-textSecondary peer-disabled:cursor-not-allowed"
+                          >
+                            Saya telah membaca dan menyetujui persyaratan
+                            layanan dan kebijakan privasi kami
+                          </label>
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
+              {msg && (
+                <p className="text-[0.8rem] font-medium text-destructive">
+                  {" "}
+                  {msg}
+                </p>
+              )}
               <Button type="submit" className="h-12 w-full shadow-xl">
                 Lanjutkan
               </Button>

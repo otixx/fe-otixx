@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useFormReq } from "@/hook/useForm";
-import { useLogin } from "@/hook/useLogin";
+import { useLogin } from "@/hook/useAuth";
 import { EyeClosedIcon } from "@radix-ui/react-icons";
 import { EyeIcon } from "lucide-react";
 import Image from "next/image";
@@ -18,7 +18,7 @@ import Link from "next/link";
 import { useState } from "react";
 export default function LoginPage() {
   const [showPassword, setshowPassword] = useState(false);
-  const { onSubmit } = useLogin();
+  const { onSubmit, msg } = useLogin();
   const { formlogin } = useFormReq();
   return (
     <div className="grid h-[100dvh] grid-cols-12">
@@ -41,7 +41,7 @@ export default function LoginPage() {
             <h1 className="text-2xl font-medium">Selamat Datang di</h1>
             <p className="text-2xl font-bold">OTAKUTIXX</p>
           </div>
-          <p className="text-lg font-medium">
+          <p className="font-medium lg:text-base xl:text-lg">
             Nikmati pengalaman mudah dan cepat dalam memesan tiket event Jepang
             favorit Anda. Masuk sekarang dan jadilah bagian dari momen tak
             terlupakan di setiap acara yang Anda nantikan!
@@ -57,7 +57,7 @@ export default function LoginPage() {
           />
         </div>
       </div>
-      <div className="col-span-12 flex items-center justify-center md:block md:p-10 xl:col-span-7 2xl:col-span-7">
+      <div className="col-span-12 flex items-center justify-center xl:col-span-7 xl:block xl:p-10 2xl:col-span-7">
         <div className="mt-5 w-full max-w-lg p-5 xl:mt-0 xl:max-w-2xl 2xl:mt-10 2xl:max-w-2xl">
           <h1 className="text-center text-sm font-bold text-first xl:text-left xl:text-2xl 2xl:text-left 2xl:text-2xl">
             Login untuk masuk
@@ -115,6 +115,12 @@ export default function LoginPage() {
                   </FormItem>
                 )}
               />
+              {msg && (
+                <p className="text-[0.8rem] font-medium text-destructive">
+                  {" "}
+                  {msg}
+                </p>
+              )}
               <Link href="/forgot-password">
                 <p className="mt-5 text-end text-sm text-first">
                   Lupa Password ?
